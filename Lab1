@@ -1,0 +1,54 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+	int a[20],i,j,m,n,item;
+	clrscr();
+	cout<<"Enter how many elements you want: ";
+	cin>>n;
+	cout<<endl<<"Enter array elements: ";
+	for(i=1;i<=n;i++)
+	{
+		cin>>a[i];
+	}
+	cout<<endl<<"Enter element you want to delete: ";
+	cin>>m;
+	for(i=1;i<=n;i++)
+	{
+		if(a[i]==m)
+		{
+			j=i;
+			while(j<=n)
+			{
+				a[j]=a[j+1];
+				j++;
+			}
+			n--;
+			i--;                                //after every deletion elements shifts one position backward there i must also decrement by 1
+		}
+	}
+
+	for(i=1;i<=n;i++)
+		cout<<a[i]<<" ";
+	cout<<endl<<"New value of n= "<<n;
+	if(n<4)
+		cout<<endl<<"n must be greater than 3."<<endl;
+	else
+	{
+		cout<<endl<<"Enter element you want to add: ";
+		cin>>item;
+
+		i=n;
+		while(i>=5)
+		{
+			a[i+1]=a[i];
+			i--;
+		}
+		n++;
+		a[5]=item;
+		for(i=1;i<=n;i++)
+		{
+			cout<<a[i]<<" ";
+		}
+	}	getch();
+}

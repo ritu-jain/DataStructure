@@ -1,0 +1,111 @@
+#include <iostream>
+#include<cstdlib>
+using namespace std;
+
+typedef struct circular
+{
+    int info;
+    struct circular *link;
+}node;
+node *head;
+void empty_list()
+{
+    head=NULL;
+}
+void insert_item(int item)
+{
+    node *ptr=(node*)malloc(sizeof(node));
+    ptr->info=item;
+    if(head==NULL)
+    {
+        head=ptr;
+        ptr->link=ptr;
+    }
+    else
+    {
+        node *loc=head;
+        while(loc->link!=head)
+        {
+            loc=loc->link;
+        }
+        loc->link=ptr;
+        ptr->link=head;
+    }
+}
+void insert_beg(int item)
+{
+    node *ptr=(node*)malloc(sizeof(node));
+    ptr->info=item;
+    if(head==NULL)
+    {
+        head=ptr;
+        ptr->link=ptr;
+    }
+    else
+    {
+        node *loc=head;
+
+        while(loc->link!=head)
+        {
+
+            loc=loc->link;
+        }
+        ptr->link=head;
+        loc->link=ptr;
+        head=ptr;
+    }
+}
+void del()
+{
+    node *loc=head;
+    while(loc->link!=head)
+    {
+        loc=loc->link;
+    }
+    node *ptr=head;
+    head=ptr->link;
+    loc->link=head;
+    free(ptr);
+
+
+
+}
+void del_end()
+{
+    node *loc=head;
+    node *ptr=head->link;
+    while(ptr->link!=head)
+    {
+        ptr=ptr->link;
+        loc=loc->link;
+    }
+    loc->link=head;
+    free(ptr);
+
+
+}
+void traversal()
+{
+    node *ptr=head;
+    while(ptr->link!=head)
+    {
+        cout<<endl<<ptr->info;
+        ptr=ptr->link;
+    }
+    cout<<endl<<ptr->info;
+}
+
+int main()
+{
+    empty_list();
+    insert_item(10);
+    insert_item(20);
+    insert_item(30);
+    insert_item(40);
+    insert_item(50);
+    insert_beg(40);
+    del();
+    del_end();
+    traversal();
+    return 0;
+}

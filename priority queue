@@ -1,0 +1,92 @@
+#include <iostream>
+#include<cstdlib>
+using namespace std;
+typedef struct priorty
+{
+    int info;
+    struct priorty *link;
+    int p;
+}node;
+node *head;
+void empty_lst()
+{
+    head=NULL;
+}
+void insert_node(int item,int pre)
+{
+    node *ptr=(node*)malloc(sizeof(node));
+    ptr->info=item;
+    ptr->p=pre;
+
+    node *temp=head;
+    if(head==NULL)
+    {
+        head=ptr;
+        ptr->link=NULL;
+    }
+    else if(head->link==NULL)
+    {
+        if(ptr->p>temp->p)
+        {
+            temp->link=ptr;
+            ptr->link=NULL;
+        }
+        else
+        {
+            node *loc=head->link;
+            ptr->link=temp;
+            head=ptr;
+        }
+    }
+    else
+{
+    node *loc=head->link;
+    while(loc!=NULL)
+    {
+        if(temp->p==loc->p)
+        {
+            loc=loc->link;
+            temp=temp->link;
+        }
+        else
+        {
+
+            if((loc->p> ptr->p )|| (loc->link==NULL))
+            {
+                temp->link=ptr;
+                ptr->link=loc;
+            }
+            loc=loc->link;
+            temp=temp->link;
+        }
+    }
+}
+}
+void traversal()
+{
+    node *ptr=head;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->info<<" ";
+        cout<<ptr->p<<endl;
+        ptr=ptr->link;
+    }
+}
+
+
+int main()
+{
+    int item,pre,n;
+    cout<<"how many elements:";
+    cin>>n;
+    for(int i=1;i<=n;i++)
+    {
+        cout<<"item: ";
+        cin>>item;
+        cout<<"pre: ";
+        cin>>pre;
+        insert_node(item,pre);
+    }
+    traversal();
+    return 0;
+}

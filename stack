@@ -1,0 +1,87 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+int stack[10];
+int maxstk;
+int top;
+
+void push(int item)
+{
+
+	if(top>=maxstk)
+		cout<<endl<<"overflow \n cant enter into stack";
+	else
+	{
+		top++;
+		stack[top]=item;
+		cout<<endl<<"insertion successful";
+	}
+}
+
+void pop()
+{
+	int temp;
+	if(top==0)
+		cout<<endl<<"underflow \n no element to delete from stack";
+	else
+	{
+		temp=stack[top];
+		top--;
+		cout<<endl<<"you have deleted :"<<temp;
+
+	}
+}
+
+void display()
+{
+	int i;
+	cout<<endl<<"the stack is : ";
+	for(i=1;i<=top;i++)
+	{
+		cout<<stack[i]<<" ";
+	}
+}
+void main()
+{
+	int x,item;
+	clrscr();
+	cout<<endl<<"enter the size of the stack : ";
+	cin>>maxstk;
+
+	cout<<endl<<"maxstack is :"<<maxstk;
+
+	do
+	{
+		cout<<endl<<"1 display stack";
+		cout<<endl<<"2 PUSH ";
+		cout<<endl<<"3 POP\n";
+		cout<<endl<<"enter your choice :";
+		cin>>x;
+
+		switch(x)
+		{
+			case 1:
+			{
+				display();
+				break;
+			}
+			case 2:
+			{
+				cout<<endl<<"enter the element to insert into stack : ";
+				cin>>item;
+				push(item);
+				break;
+			 }
+			case 3:
+			{
+				pop();
+				break;
+			 }
+			default :
+			{
+				exit(0);
+			}
+		}
+	}while(1);
+
+}
